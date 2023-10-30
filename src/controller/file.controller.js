@@ -32,6 +32,7 @@ const upload  = async (req, res) => {
 
 const getListFiles = (req, res) => {
     const directoryPath = __basedir + "/resources/static/assets/uploads";
+    const downlaodPa = "http://localhost:8080/files/"
     fs.readdir(directoryPath, function (err, files) {
         if (err) {
             res.status(500).send({
@@ -43,7 +44,7 @@ const getListFiles = (req, res) => {
         files.forEach((file) => {
             fileInfos.push({
                 name: file,
-                url: baseUrl + file,
+                url: downlaodPa + file,
             });
         });
         res.status(200).send(fileInfos);
