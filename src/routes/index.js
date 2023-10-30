@@ -4,7 +4,7 @@ const controller = require("../controller/file.controller");
 
 let routes = (app) => {
     router.get("/", (req, res) => {
-        res.send("this isa file upload api")
+        res.send("this is  a file upload api")
     })
     router.post("/upload",controller.upload);
     router.get("/files", controller.getListFiles);
