@@ -55,6 +55,8 @@ const getListFiles = (req, res) => {
 const downlaod = (req, res) => {
     const fileName  = req.params.name;
     const directoryPath = __basedir + "/resources/static/assets/uploads/";
+    /*for res.download directory or file path must be with in app root directory forexample below and always 
+    starts with ./folder/ */
     const downloadPath = "./resources/static/assets/uploads/"
 
    /* res.downlaod(directoryPath + fileName, fileName, (err) =>{
@@ -65,7 +67,7 @@ const downlaod = (req, res) => {
         }
     });*/
 
-    res.download(/*'./resources/static/assets/uploads/'*/ downloadPath + fileName, 'report.pdf', (err) => {
+    res.download(/*'./resources/static/assets/uploads/'*/ downloadPath + fileName, fileName, (err) => {
         if (err) {
             res.status(500).send ({
                 message: "could not download the file. " + err,
@@ -76,8 +78,18 @@ const downlaod = (req, res) => {
     
 };
 
+const preview = (req, res) => {
+    const downloadPath = "/resources/static/assets/uploads/"; 
+    /*with res.sendFile: directory/file path must be equal to the one starting from rootof host machine
+    call it root directory */
+    const dddd = "/Users/Bliss Play/Desktop/nodejs express file upload api/resources/static/assets/uploads/"
+    const filename = req.params.name;
+    res.sendFile(dddd + filename);
+}
+
 module.exports = {
     upload,
     getListFiles,
     downlaod,
+    preview,
 };
