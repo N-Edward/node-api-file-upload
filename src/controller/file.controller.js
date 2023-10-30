@@ -1,7 +1,7 @@
 const uploadFile = require("../middleware/upload");
 var fs = require('fs');
 /*const baseUrl = "http://localhost:8080/resources/static/assets/";*/
-const baseUrl = "https://node-api-file-upload.vercel.app/";
+const baseUrl = "https://node-api-file-upload.vercel.app/resources/static/assets/";
 
 const upload  = async (req, res) => {
     try {
