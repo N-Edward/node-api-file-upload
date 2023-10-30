@@ -1,7 +1,8 @@
 const uploadFile = require("../middleware/upload");
 var fs = require('fs');
-/*const baseUrl = "http://localhost:8080/resources/static/assets/";*/
-const baseUrl = "https://node-api-file-upload.vercel.app/resources/static/assets/";
+const baseUrl = "http://localhost:8080/resources/static/assets/uploads";
+/*const baseUrl = "https://node-api-file-upload.vercel.app/resources/static/assets/";*/
+const downloadPath = "/resources/static/assets/uploads";
 
 const upload  = async (req, res) => {
     try {
@@ -51,16 +52,27 @@ const getListFiles = (req, res) => {
 
 
 const downlaod = (req, res) => {
-    const filename  = req.params.name;
+    const fileName  = req.params.name;
     const directoryPath = __basedir + "/resources/static/assets/uploads/";
+    const downloadPath = "./resources/static/assets/uploads/"
 
-    res.downlaod(directoryPath + filename, fileName, (err) =>{
+   /* res.downlaod(directoryPath + fileName, fileName, (err) =>{
+        if (err) {
+            res.status(500).send ({
+                message: "could not download the file. " + err,
+            });
+        }
+    });*/
+
+    res.download(/*'./resources/static/assets/uploads/'*/ downloadPath + fileName, 'report.pdf', (err) => {
         if (err) {
             res.status(500).send ({
                 message: "could not download the file. " + err,
             });
         }
     });
+        
+    
 };
 
 module.exports = {

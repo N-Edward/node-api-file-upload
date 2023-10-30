@@ -9,6 +9,9 @@ let routes = (app) => {
     router.post("/upload",controller.upload);
     router.get("/files", controller.getListFiles);
     router.get("/files/:name", controller.downlaod);
+    router.get("/ne", (req,res) => {
+        res.download('./resources/static/assets/uploads/epos_faq_en.pdf', 'report.pdf');
+    });
 
     app.use(router);
 }
